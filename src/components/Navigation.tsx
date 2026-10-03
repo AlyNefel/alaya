@@ -85,7 +85,7 @@ export default function Navigation() {
             scrolled ? 'bg-[#080812] border border-[rgba(255,255,255,0.1)] shadow-xl py-3 mx-4 lg:mx-8' : 'py-2'
           }`}
         >
-          {/* Logo & Sub-actions */}
+          {/* Logo */}
           <div className="flex flex-col items-start justify-center">
             <Link href={`/${locale}`} className="flex items-center gap-2 group">
               <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#f5a623] to-[#f59e0b] flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
@@ -95,46 +95,47 @@ export default function Navigation() {
                 Alaya<span className="text-[#f5a623]">.</span>
               </span>
             </Link>
+          </div>
+
+          {/* Desktop nav links & actions */}
+          <div className="hidden lg:flex items-center gap-6">
+            <ul className="flex items-center gap-1">
+              {NAV_LINKS.map(({ key, href }) => (
+                <li key={key}>
+                  <button
+                    onClick={() => handleNavClick(href)}
+                    className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 group ${
+                      activeSection === href.slice(1)
+                        ? 'text-[#f5a623]'
+                        : 'text-white/80 hover:text-white hover:bg-white/5'
+                    }`}
+                  >
+                    {t(key)}
+                    <span className={`absolute bottom-1 left-1/2 -translate-x-1/2 h-0.5 bg-[#f5a623] rounded-full transition-all duration-300 ${activeSection === href.slice(1) ? 'w-1/2' : 'w-0 group-hover:w-1/2 opacity-50'}`} />
+                  </button>
+                </li>
+              ))}
+            </ul>
             
-            <div className="flex items-center gap-4 mt-1.5 ml-[44px]">
-              <button
-                onClick={handleCVDownload}
-                className="flex items-center gap-1.5 text-xs font-semibold text-[#f5a623] hover:text-white transition-colors"
-              >
-                <Download size={12} />
-                {t('downloadCV')}
-              </button>
-              
-              <div className="w-px h-3 bg-white/20" /> {/* Divider */}
-              
+            <div className="w-px h-5 bg-white/10" />
+            
+            <div className="flex items-center gap-4">
               <button
                 onClick={switchLocale}
-                className="flex items-center gap-1.5 text-xs font-semibold text-white/70 hover:text-white transition-colors"
+                className="flex items-center gap-1.5 text-sm font-semibold text-white/70 hover:text-white transition-colors"
               >
-                <Globe size={12} />
+                <Globe size={14} />
                 {locale === 'en' ? 'ES' : 'EN'}
+              </button>
+              <button
+                onClick={handleCVDownload}
+                className="flex items-center gap-1.5 text-sm font-semibold text-[#f5a623] hover:text-[#f59e0b] transition-colors"
+              >
+                <Download size={14} />
+                {t('downloadCV')}
               </button>
             </div>
           </div>
-
-          {/* Desktop nav links */}
-          <ul className="hidden lg:flex items-center gap-2">
-            {NAV_LINKS.map(({ key, href }) => (
-              <li key={key}>
-                <button
-                  onClick={() => handleNavClick(href)}
-                  className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 group ${
-                    activeSection === href.slice(1)
-                      ? 'text-[#f5a623]'
-                      : 'text-white/80 hover:text-white hover:bg-white/5'
-                  }`}
-                >
-                  {t(key)}
-                  <span className={`absolute bottom-1 left-1/2 -translate-x-1/2 h-0.5 bg-[#f5a623] rounded-full transition-all duration-300 ${activeSection === href.slice(1) ? 'w-1/2' : 'w-0 group-hover:w-1/2 opacity-50'}`} />
-                </button>
-              </li>
-            ))}
-          </ul>
 
           {/* Mobile hamburger */}
           <div className="flex items-center lg:hidden">
@@ -169,7 +170,22 @@ export default function Navigation() {
                   </button>
                 </li>
               ))}
-              {/* Mobile CV Button is now under the logo, but we can keep this or remove it. I'll remove it from the menu list to avoid confusion since it's prominently under the name now. */}
+              <li className="pt-3 pb-1 border-t border-[rgba(255,255,255,0.06)] flex flex-col gap-2 mt-2">
+                <button
+                  onClick={switchLocale}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-medium text-white/80 hover:text-white hover:bg-white/5 transition-all"
+                >
+                  <Globe size={16} />
+                  {locale === 'en' ? 'Cambiar a Español' : 'Switch to English'}
+                </button>
+                <button
+                  onClick={handleCVDownload}
+                  className="w-full btn-primary justify-center text-sm py-3"
+                >
+                  <Download size={16} />
+                  {t('downloadCV')}
+                </button>
+              </li>
             </ul>
           </motion.div>
         )}
