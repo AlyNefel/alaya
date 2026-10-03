@@ -85,15 +85,24 @@ export default function Navigation() {
             scrolled ? 'bg-[#080812] border border-[rgba(255,255,255,0.1)] shadow-xl py-3 mx-4 lg:mx-8' : 'py-2'
           }`}
         >
-          {/* Logo */}
-          <Link href={`/${locale}`} className="flex items-center gap-2 group">
-            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#f5a623] to-[#f59e0b] flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-              <span className="text-black font-bold text-sm font-['Playfair_Display']">A</span>
-            </div>
-            <span className="font-bold text-white text-lg tracking-wide font-['Playfair_Display'] ml-1">
-              Alaya<span className="text-[#f5a623]">.</span>
-            </span>
-          </Link>
+          {/* Logo & Mobile CV */}
+          <div className="flex flex-col items-start justify-center">
+            <Link href={`/${locale}`} className="flex items-center gap-2 group">
+              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#f5a623] to-[#f59e0b] flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
+                <span className="text-black font-bold text-sm font-['Playfair_Display']">A</span>
+              </div>
+              <span className="font-bold text-white text-lg tracking-wide font-['Playfair_Display'] ml-1">
+                Alaya<span className="text-[#f5a623]">.</span>
+              </span>
+            </Link>
+            <button
+              onClick={handleCVDownload}
+              className="md:hidden flex items-center gap-1.5 mt-1 ml-[44px] text-xs font-semibold text-[#f5a623] hover:text-white transition-colors"
+            >
+              <Download size={12} />
+              {t('downloadCV')}
+            </button>
+          </div>
 
           {/* Desktop nav links */}
           <ul className="hidden lg:flex items-center gap-2">
@@ -170,15 +179,7 @@ export default function Navigation() {
                   </button>
                 </li>
               ))}
-              <li className="pt-3 border-t border-[rgba(255,255,255,0.06)]">
-                <button
-                  onClick={handleCVDownload}
-                  className="w-full btn-primary justify-center text-sm"
-                >
-                  <Download size={14} />
-                  {t('downloadCV')}
-                </button>
-              </li>
+              {/* Mobile CV Button is now under the logo, but we can keep this or remove it. I'll remove it from the menu list to avoid confusion since it's prominently under the name now. */}
             </ul>
           </motion.div>
         )}
