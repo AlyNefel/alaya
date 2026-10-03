@@ -90,7 +90,7 @@ export default function Navigation() {
             <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#f5a623] to-[#f59e0b] flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
               <span className="text-black font-bold text-sm font-['Playfair_Display']">A</span>
             </div>
-            <span className="font-bold text-white text-lg tracking-wide font-['Playfair_Display'] hidden sm:block">
+            <span className="font-bold text-white text-lg tracking-wide font-['Playfair_Display'] ml-1">
               Alaya<span className="text-[#f5a623]">.</span>
             </span>
           </Link>
@@ -132,7 +132,7 @@ export default function Navigation() {
               whileHover={{ scale: 1.05, y: -1 }}
               whileTap={{ scale: 0.95 }}
               onClick={handleCVDownload}
-              className="hidden sm:flex items-center gap-2 btn-primary py-2 px-5 text-sm"
+              className="hidden md:flex items-center gap-2 btn-primary py-2 px-5 text-sm"
             >
               <Download size={14} />
               {t('downloadCV')}
@@ -157,7 +157,7 @@ export default function Navigation() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.25 }}
-            className="fixed top-[80px] left-4 right-4 z-40 glass rounded-2xl p-6 lg:hidden border border-[rgba(255,255,255,0.08)]"
+            className="fixed top-[80px] left-4 right-4 z-40 bg-[#080812] shadow-2xl rounded-2xl p-6 lg:hidden border border-[rgba(255,255,255,0.08)]"
           >
             <ul className="flex flex-col gap-1">
               {NAV_LINKS.map(({ key, href }) => (
