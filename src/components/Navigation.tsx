@@ -85,7 +85,7 @@ export default function Navigation() {
             scrolled ? 'bg-[#080812] border border-[rgba(255,255,255,0.1)] shadow-xl py-3 mx-4 lg:mx-8' : 'py-2'
           }`}
         >
-          {/* Logo & Mobile CV */}
+          {/* Logo & Sub-actions */}
           <div className="flex flex-col items-start justify-center">
             <Link href={`/${locale}`} className="flex items-center gap-2 group">
               <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#f5a623] to-[#f59e0b] flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
@@ -95,13 +95,26 @@ export default function Navigation() {
                 Alaya<span className="text-[#f5a623]">.</span>
               </span>
             </Link>
-            <button
-              onClick={handleCVDownload}
-              className="md:hidden flex items-center gap-1.5 mt-1 ml-[44px] text-xs font-semibold text-[#f5a623] hover:text-white transition-colors"
-            >
-              <Download size={12} />
-              {t('downloadCV')}
-            </button>
+            
+            <div className="flex items-center gap-4 mt-1.5 ml-[44px]">
+              <button
+                onClick={handleCVDownload}
+                className="flex items-center gap-1.5 text-xs font-semibold text-[#f5a623] hover:text-white transition-colors"
+              >
+                <Download size={12} />
+                {t('downloadCV')}
+              </button>
+              
+              <div className="w-px h-3 bg-white/20" /> {/* Divider */}
+              
+              <button
+                onClick={switchLocale}
+                className="flex items-center gap-1.5 text-xs font-semibold text-white/70 hover:text-white transition-colors"
+              >
+                <Globe size={12} />
+                {locale === 'en' ? 'ES' : 'EN'}
+              </button>
+            </div>
           </div>
 
           {/* Desktop nav links */}
@@ -123,34 +136,11 @@ export default function Navigation() {
             ))}
           </ul>
 
-          {/* Actions */}
-          <div className="flex items-center gap-3">
-            {/* Language toggle */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={switchLocale}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg glass text-sm font-semibold text-[#f5a623] border border-[rgba(245,166,35,0.2)] hover:border-[rgba(245,166,35,0.5)] transition-all"
-            >
-              <Globe size={14} />
-              {locale === 'en' ? 'ES' : 'EN'}
-            </motion.button>
-
-            {/* CV Download */}
-            <motion.button
-              whileHover={{ scale: 1.05, y: -1 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={handleCVDownload}
-              className="hidden md:flex items-center gap-2 btn-primary py-2 px-5 text-sm"
-            >
-              <Download size={14} />
-              {t('downloadCV')}
-            </motion.button>
-
-            {/* Mobile hamburger */}
+          {/* Mobile hamburger */}
+          <div className="flex items-center lg:hidden">
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden p-2 rounded-lg glass"
+              className="p-2 rounded-lg glass text-white/80 hover:text-white transition-colors"
             >
               {mobileOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
