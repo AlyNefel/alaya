@@ -3,6 +3,7 @@ import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { Inter, Playfair_Display } from 'next/font/google';
+import WhatsAppButton from '@/components/WhatsAppButton';
 import '../globals.css';
 
 const inter = Inter({
@@ -58,6 +59,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body className="bg-[#080812] text-white antialiased overflow-x-hidden">
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
+          <WhatsAppButton />
         </NextIntlClientProvider>
       </body>
     </html>
