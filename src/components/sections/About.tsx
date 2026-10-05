@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import { Award, GraduationCap, Users, Briefcase } from 'lucide-react';
 
 const stats = [
@@ -47,18 +48,15 @@ export default function About() {
             <div className="relative">
               {/* Photo frame */}
               <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-3xl overflow-hidden gradient-border">
-                <div
-                  className="w-full h-full rounded-3xl flex items-center justify-center relative overflow-hidden"
-                  style={{
-                    background:
-                      'linear-gradient(135deg, rgba(245,166,35,0.15) 0%, rgba(167,139,250,0.15) 50%, rgba(56,189,248,0.1) 100%)',
-                  }}
-                >
-                  {/* Picture placeholder for Alaya */}
-                  <div className="absolute inset-0 flex items-center justify-center flex-col text-[#f5a623]/80 border-2 border-dashed border-[#f5a623]/30 rounded-3xl m-4">
-                    <span className="text-4xl mb-2">📸</span>
-                    <span className="text-sm font-medium text-center px-4">Your Photo Here<br/><span className="text-xs text-white/50">(Replace with Image)</span></span>
-                  </div>
+                <div className="w-full h-full rounded-3xl relative overflow-hidden bg-[#1e293b]">
+                  <Image 
+                    src="/alaya.jpg" 
+                    alt="Alaya Zaaraoui" 
+                    fill 
+                    className="object-cover"
+                    sizes="(max-width: 768px) 288px, 384px"
+                    priority
+                  />
                 </div>
                 {/* Inner border glow */}
                 <div className="absolute inset-0 rounded-3xl border border-[rgba(245,166,35,0.2)] pointer-events-none" />
